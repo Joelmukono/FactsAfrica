@@ -1,5 +1,6 @@
 package com.example.vendor.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.vendor.R;
@@ -13,7 +14,12 @@ import androidx.navigation.ui.NavigationUI;
 
 public class BottomNavigation extends AppCompatActivity {
 
-    public static final String EXTRA_DETAIL = "detail";
+    public static final String EXTRA_NAME = "name";
+    public static final String EXTRA_ID = "NO ID";
+    public static final String EXTRA_EMAIL = "email";
+    public static final String EXTRA_ADDRESS = "NO email address";
+    public static final String EXTRA_PHONE = " No 0722111222";
+    public static final String EXTRA_LOGO = "logo";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +34,14 @@ public class BottomNavigation extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+
+//        //receiving intent data
+//        Intent intent = getIntent();
+//        String name = intent.getStringExtra("name");
+//        String branch = intent.getStringExtra("branch");
+//        String id = intent.getStringExtra("id");
+//        int logo= intent.getIntExtra("logo",0);
     }
 
 }

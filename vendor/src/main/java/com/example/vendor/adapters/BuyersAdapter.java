@@ -32,7 +32,7 @@ public class BuyersAdapter  extends RecyclerView.Adapter<BuyersAdapter.MyViewHol
     public BuyersAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         LayoutInflater mInflater = LayoutInflater.from(mContext);
-        view=mInflater.inflate(R.layout.buyer_detail,parent,false);
+        view=mInflater.inflate(R.layout.buyers_item,parent,false);
         return new MyViewHolder(view);
     }
 
@@ -40,7 +40,7 @@ public class BuyersAdapter  extends RecyclerView.Adapter<BuyersAdapter.MyViewHol
     public void onBindViewHolder(@NonNull BuyersAdapter.MyViewHolder holder, int position) {
 
         holder.buyer_name.setText(mData.get(position).getName());
-        holder.buyer_logo.setImageResource(mData.get(position).getOrderId() );
+        holder.buyer_logo.setImageResource(mData.get(position).getLogo() );
     }
 
     @Override

@@ -2,16 +2,28 @@ package com.example.vendor.adapters;
 
 public class BuyersTestClass {
 
-    private String name;
-    private int id;
-    private String branch;
-    private int orderId;
+    String id ;
+    String name;
+    String email;
+    String phone;
+    String address;
+    int logo;
 
-    public BuyersTestClass(String name, int id, String branch, int orderId) {
-        this.name = name;
+    public BuyersTestClass(String id, String name, String email, String phone, String address, int logo) {
         this.id = id;
-        this.branch = branch;
-        this.orderId = orderId;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.logo = logo;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -22,27 +34,35 @@ public class BuyersTestClass {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getBranch() {
-        return branch;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setBranch(String branch) {
-        this.branch = branch;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public int getOrderId() {
-        return orderId;
+    public String getAddress() {
+        return address;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getLogo() {
+        return logo;
+    }
+
+    public void setLogo(int logo) {
+        this.logo = logo;
     }
 }
