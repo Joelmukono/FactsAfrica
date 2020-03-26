@@ -131,6 +131,10 @@ public class Invoice implements Serializable
     }
 
 
-
+    @NonNull
+    @Override
+    public String toString() {
+        return this.invoiceAmount + " " + this.invoiceStatus+" "+this.buyerId+" "+this.createdAt+" "+this.dueDate; ///selects many properties form model
+    }
 
 }
