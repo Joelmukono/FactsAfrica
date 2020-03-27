@@ -402,7 +402,7 @@ public class InvoiceFragment extends Fragment implements View.OnClickListener {
 
         Notification notification = new NotificationCompat.Builder(rootView.getContext(), FactsAfrica.INVOICE_SENT)
                 .setSmallIcon(R.drawable.facts)
-                .setContentTitle("THE CLIENT HAS RECEIVED INVOICE #" + mInvoiceNumber.getText().toString().trim() + "\n")
+                .setContentTitle("INVOICE #" + mInvoiceNumber.getText().toString().trim() + " HAS BEEN RECEIVED BY THE CLIENT")
                 .setContentText("DUE DATE: "+mPickDate.getText().toString().trim())
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
