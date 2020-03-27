@@ -30,7 +30,7 @@
         android:id="@+id/instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="The following is a list of approved invoices by the buyer. Click on an invoice to make a request to the bank."
+        android:text="The following is a list of approved invoices by the buyer. Check your email for payment details."
         android:layout_below="@id/customTopText"
         android:layout_marginStart="15dp"
         android:layout_marginBottom="16dp"
