@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,16 +54,26 @@ public class DashboardFragment extends Fragment {
     private static final String TAG = "DashboardFragment";
 
     private String mEmail;
+    List<User> userData;
+    User userInfo;
 
 
     @BindView(R.id.account_user_name)
     TextView accUserName;
     @BindView(R.id.acc_user_email)
     TextView mUserEmail;
+    @BindView(R.id.acc_user_phone)
+    TextView mUserPhone;
+    @BindView(R.id.acc_user_address)
+    TextView mUserAddress;
+
     @BindView(R.id.buyer_size)
     TextView mBuyerSize;
     @BindView(R.id.total_invoices_sent)
     TextView mInvoicesNumber;
+
+    @BindView(R.id.logout_image)
+    ImageView mLogout;
     private String token;
     private SharedPreferences mPreferences;
     private DashboardViewModel dashboardViewModel;
@@ -74,26 +85,34 @@ public class DashboardFragment extends Fragment {
         mEmail = mPreferences.getString(Constants.PREFERENCES_EMAIL_KEY, null);
         Log.d(TAG, "onCreate: "+ mEmail);
         ButterKnife.bind(this, root);
+
         token = mPreferences.getString("token", "");
         Log.v("passed token", token);
         return root;
+
+
     }
     @Override
     public void onStart() {
         super.onStart();
         getAllInvoices();
         getUsersById();
+        getUserInfo();
+        logout();
+
     }
 
     private void getAllInvoices() {
 
         FactsAfricaApi service = FactsAfricaClient.getClient().create(FactsAfricaApi.class);
         Call<List<Invoice>> call = service.getAllInvoices(token);
-        Log.v("URL", call.request().url().toString());
+        Log.v("URL1", call.request().url().toString());
         call.enqueue(new Callback<List<Invoice>>() {
             @Override
             public void onResponse(Call<List<Invoice>> call, Response<List<Invoice>> response) {
                 mInvoicesNumber.setText(Integer.toString(response.body().size()));
+                Log.v("Responsible",response.body().toString());
+
             }
 
             @Override
@@ -109,12 +128,62 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    mBuyerSize.setText(Integer.toString(response.body().size()));
+
+                    userData =response.body();
+
+                    //String mail = userData.get(0).getEmail();
+                    mBuyerSize.setText(Integer.toString(userData.size()));
+
                 }
             }
             @Override
             public void onFailure(Call<List<User>> call, Throwable t) {
                 Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public void  getUserInfo(){
+        Call<User> call1 = Utils.getApi().getUser(token);
+        Log.v("wabebe", call1.request().url().toString());
+        call1.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+
+
+                if (response.isSuccessful() && response.body() != null){
+                    Log.v("wabebe1", response.body().toString());
+                    userInfo= response.body();
+
+                    mUserAddress.setText("1 - Ngong Lane Plaza "); // hard coded
+                    mUserEmail.setText(userInfo.getEmail());
+                    accUserName.setText(userInfo.getName());
+                    mUserPhone.setText("1 -0722000000"); //hardcoded
+
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(getContext(), "Error"+t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+
+
+            }
+        });
+
+
+    }
+
+    public void logout(){
+        mLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Toast.makeText(getContext(), "logged out", Toast.LENGTH_LONG).show();
+                mPreferences.edit().remove("token").commit();
+                Intent logoutIntent = new Intent(getContext(), LoginActivity.class);
+                startActivity(logoutIntent);
+
             }
         });
     }
