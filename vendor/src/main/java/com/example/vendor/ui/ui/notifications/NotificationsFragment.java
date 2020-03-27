@@ -78,19 +78,19 @@ public class NotificationsFragment extends Fragment {
                 mInvoicesRecycler.setLayoutManager(linearLayoutManager);
                 mInvoicesRecycler.setHasFixedSize(true);
                 adapter.notifyDataSetChanged();
-                adapter.setOnClickListener((View view, int position) -> {
-                    //Toast.makeText(getContext(), invoices.get(position).getInvoiceAmount(), Toast.LENGTH_SHORT).show();
-                    TextView invoiceName = root.findViewById(R.id.invoiceNo);
-                    TextView invoiceDate = root.findViewById(R.id.invoice_date);
-                    TextView amountPaid = root.findViewById(R.id.payAmount);
-
-                    Intent intent = new Intent(getActivity(), BankRequestActivity.class);
-                    intent.putExtra(Constants.NAME, invoiceName.getText().toString().trim());
-                    intent.putExtra(Constants.DATE, invoiceDate.getText().toString().trim());
-                    intent.putExtra(Constants.AMOUNT_PAID, amountPaid.getText().toString().trim());
-                    startActivity(intent);
-
-                });
+//                adapter.setOnClickListener((View view, int position) -> {
+//                    //Toast.makeText(getContext(), invoices.get(position).getInvoiceAmount(), Toast.LENGTH_SHORT).show();
+//                    TextView invoiceName = root.findViewById(R.id.invoiceNo);
+//                    TextView invoiceDate = root.findViewById(R.id.invoice_date);
+//                    TextView amountPaid = root.findViewById(R.id.payAmount);
+//
+//                    Intent intent = new Intent(getActivity(), BankRequestActivity.class);
+//                    intent.putExtra(Constants.NAME, invoiceName.getText().toString().trim());
+//                    intent.putExtra(Constants.DATE, invoiceDate.getText().toString().trim());
+//                    intent.putExtra(Constants.AMOUNT_PAID, amountPaid.getText().toString().trim());
+//                    startActivity(intent);
+//
+//                });
             }
             @Override
             public void onFailure(Call<List<Invoice>> call, Throwable t) {
