@@ -66,6 +66,8 @@ public class Invoice implements Serializable
         this.updatedAt = updatedAt;
     }
 
+
+
     public Integer getId() {
         return id;
     }
@@ -131,10 +133,28 @@ public class Invoice implements Serializable
     }
 
 
+
+
+  public String convertStatus(){
+        String status = getInvoiceStatus().toString();
+
+        if(status.equals("1")){
+            status = "pending";
+        }else if(status.equals("2")){
+            status = "approved";
+        }else{
+            status = "declined";
+        }
+        return status;
+}
+
+
+
     @NonNull
     @Override
     public String toString() {
-        return this.invoiceAmount + " " + this.invoiceStatus; ///selects many properties form model
+
+        return this.invoiceAmount; ///selects many properties form model
     }
 
 }

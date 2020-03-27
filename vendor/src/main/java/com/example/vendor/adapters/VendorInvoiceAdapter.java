@@ -54,7 +54,7 @@ public class VendorInvoiceAdapter extends RecyclerView.Adapter<VendorInvoiceAdap
                 filteredList.addAll(mInvoiceListAll);
             }else{
                 for(Invoice invoice:mInvoiceListAll){
-                    if(invoice.toString().toLowerCase().contains(constraint.toString().toLowerCase())){
+                    if(invoice.convertStatus().toLowerCase().contains(constraint.toString().toLowerCase())){
                         filteredList.add(invoice);
                     }
                 }
