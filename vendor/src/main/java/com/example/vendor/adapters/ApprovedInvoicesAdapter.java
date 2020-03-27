@@ -86,7 +86,7 @@ public class ApprovedInvoicesAdapter extends RecyclerView.Adapter<ApprovedInvoic
 
             mInvoiceDate.setText(dueBy + invoice.getDueDate());
 //            mInvoiceStatus.setText(invoice.getStatus());
-            itemView.setOnClickListener(this);
+            //itemView.setOnClickListener(this);
         }
 
         @Override
