@@ -124,7 +124,7 @@ public class VendorInvoiceAdapter extends RecyclerView.Adapter<VendorInvoiceAdap
               mInvoiceStatus.setText("declined");
           }
 
-          mInvoiceId.setText(invoiceNumber + invoice.getBuyerId().toString());
+          mInvoiceId.setText(invoiceNumber + invoice.getId().toString());
           mPayAmount.setText(currency + invoice.getInvoiceAmount());
 
           mInvoiceDate.setText(dueBy + invoice.getDueDate());
